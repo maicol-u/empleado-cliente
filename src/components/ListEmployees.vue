@@ -7,8 +7,8 @@
       <hr>
       <div class="m-2 col col-sm-6">
         <label for="">Buscar por rango salarial: </label>
-        <input type="text" name="" id="" v-memo="min" placeholder="Salario minimo" class="form-control form-control-sm mb-1">
-        <input type="text" name="" id="" v-memo="max" placeholder="Salario maximo" class="form-control form-control-sm">
+        <input type="text" name="" id="" v-model="min" placeholder="Salario minimo" class="form-control form-control-sm mb-1">
+        <input type="text" name="" id="" v-model="max" placeholder="Salario maximo" class="form-control form-control-sm">
         <button class="btn btn-dark" v-on:click="findBySalary()">Buscar</button>
       </div>
       <table class="table">
@@ -73,7 +73,12 @@
         } 
       },
       findBySalary(){
-  
+        console.log(this.min);
+        const service = new EmployeeService();
+          console.log(this.search)
+          service.findBySalary(this.min, this.max).then((response) => {
+            this.employees = response
+          }); 
       }
   
     },

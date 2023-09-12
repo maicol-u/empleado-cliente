@@ -41,4 +41,18 @@ export default class EmployeeService {
         return data;
     }
 
+    async findBySalary(min, max) {
+        const response = await fetch(`${this.baseUrl}/empleados/find-salary`,
+        {
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({"min_salary":min,"max_salary":max}),
+            method: "POST",
+        });
+        const data = await response.json();
+        return data;
+    }
+
 }
